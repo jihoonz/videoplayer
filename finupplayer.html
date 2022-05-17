@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Finup Player</title>
+
+    <link href="videojsdemo.css" rel="stylesheet">
+    <link href="https://amp.azure.net/libs/amp/latest/skins/amp-flush/azuremediaplayer.min.css" rel="stylesheet">
+    
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <!-- <script src="azureplayer.min.js"></script> -->
+    <script src="https://amp.azure.net/libs/amp/latest/azuremediaplayer.min.js"></script>
+    <script src="fp_v1.js"charset="UTF-8"></script>
+
+</head>
+<body>
+    <div id="wrap">
+        <h2>Finup VOD Player 데모 버전</h2>
+            
+        <div class="left">
+            <video 
+                id="finupvideo"
+                class="azuremediaplayer amp-flush-skin amp-big-play-centered">
+            </video>    
+
+            <p></p>
+            <div class="consolebox">
+                <h2>영상 샘플</h2>
+
+                <div class="buttons">
+                    <button id="play-70742" class="play70742 btn btn-large">70742</button>
+                    <button id="play-89919" class="play89919 btn btn-large">89919</button>
+                    <button id="play-184560" class="play184560 btn btn-large">184560</button>
+                    <button id="play-192030" class="play192030 btn btn-large">192030</button>
+                    <button id="play-224061" class="play224061 btn btn-large">224061</button>
+                </div>
+            </div>
+
+
+
+            <div class="consolebox">
+                <button type="button" class="chatClear clear btn">지우기</button>
+                <h2>채팅 샘플</h2>
+                <p id="chatMsg" class="output"></p>
+            </div>
+
+            <p></p>
+
+            <div class="consolebox" hidden="true">
+                <button type="button" class="logClear clear btn">지우기</button>
+                <h2>사용자 로그</h2>
+                <p id="logMsg" class="output"></p>
+            </div>
+
+
+            <p></p>
+            
+            <div class="consolebox">
+                <button type="button" class="rawlogClear clear btn">지우기</button>
+                <h2>시스템 로그</h2>
+                <p id="rawlogMsg" class="output"></p>
+            </div>
+
+            <p></p>
+        </div>
+
+        <div class="right">
+            <fieldset class="methods js-methods">
+                <legend>영상 제어</legend>     
+
+                <div class="buttons">
+                    <button id="play-pause" class="playButton btn btn-large">재생 / 멈춤</button>
+                    <button id="stop" class="stopButton btn btn-large">정지</button>
+                </div>
+
+                <div class="buttons">
+                    <button id="back-10s" class="back10s btn btn-large" >10초 앞으로</button>
+                    <button id="fast-10s" class="fast10s btn btn-large" >10초 뒤로</button>
+                </div>
+
+                <div class="current-time">
+                    <label for="current-time-input">영상 시간</label>
+                    <div class="value-input">
+                        <input id="timelineVideo" class ="timelineVideo" type="range" min="0" max="1" step="any" value="0">
+                        <input id="timelineVideoText" class ="timelineVideoText" type="text" disabled value="00:00:00" >
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <p></p>
+
+            <fieldset class="methods js-methods">
+                <legend>영상 재생 속도</legend>  
+
+                <div class="buttons">
+                    <button id="speed-05x" class="speed050x btn btn-large" >0.5x 재생</button>
+                    <button id="speed-075x" class="speed075x btn btn-large" >0.75x 재생</button>
+                </div>
+
+                <div class="buttons">
+                    <button id="speed-10x" class="speed100x btn btn-large" >1.0x 재생</button>
+                </div>
+
+                <div class="buttons">
+                    <button id="speed-125x" class="speed125x btn btn-large" >1.25x 재생</button>
+                    <button id="speed-15x" class="speed150x btn btn-large" >1.5x 재생</button>
+                </div>
+
+                <div class="buttons">
+                    <button id="speed-175x" class="speed175x btn btn-large" >1.75x 재생</button>
+                    <button id="speed-20x" class="speed200x btn btn-large" >2.0x 재생</button>
+                </div>
+
+                <div class="buttons">
+                    <button id="speed-25x" class="speed250x btn btn-large" >2.5x 재생</button>
+                    <button id="speed-30x" class="speed300x btn btn-large" >3.0x 재생</button>
+                </div>
+            </fieldset>
+
+            <p></p>
+
+            <fieldset class="methods js-methods">
+                <legend>화면 제어</legend> 
+
+                <div class="buttons fullscreen">
+                    <button id="fullscreen-button" class="fullscreenmode js-method btn btn-large">
+                        전체화면보기 
+                    </button>
+                </div>
+
+                <div class="buttons pip">
+                    <button id="pip-button" class="pipmode js-method btn btn-large">
+                        PIP 모드 보기
+                    </button>
+                </div>
+            </fieldset>
+
+            <p></p>
+
+            <fieldset class="methods js-setters">
+
+                <legend>음량 제어</legend> 
+
+                <div class="buttons">
+                    <button id="mute-button" class="mute btn btn-large">음소거</button>
+                    <button id="unmute-button" class="unmute btn btn-large">음소거해제</button>
+                </div>
+
+                <div class="volume">
+                    <label for="current-time-input">음량 직접 제어</label>
+                    <div class="value-input">
+                        <input id="volumeRange" class ="volumeRange" type="range" min="0" max="1" step="any">
+                        <input id="volumeRangeText" class ="volumeRangeText" type="text" disabled value="0">
+                    </div>
+                </div>
+
+            </fieldset>
+
+            
+        </div>
+    </div>
+
+</body>
+</html>
